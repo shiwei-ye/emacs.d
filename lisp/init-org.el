@@ -26,7 +26,8 @@
   (maybe-require-package 'grab-mac-link))
 
 (maybe-require-package 'org-cliplink)
-
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
@@ -163,7 +164,9 @@ typical word processor."
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
+              (sequence "WAIT(w@/!)" "DELEGATED(e!)" "HOLD(h)"
+                        "IDEA(i)" ; Maybe someday
+                        "|" "CANCELLED(c@/!)")))
       org-todo-repeat-to-state "NEXT")
 
 (setq org-todo-keyword-faces
@@ -305,10 +308,10 @@ typical word processor."
 (when (and *is-a-mac* (file-directory-p "/Applications/org-clock-statusbar.app"))
   (add-hook 'org-clock-in-hook
             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-                                (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
+                                     (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
   (add-hook 'org-clock-out-hook
             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-                                "tell application \"org-clock-statusbar\" to clock out"))))
+                                     "tell application \"org-clock-statusbar\" to clock out"))))
 
 
 
