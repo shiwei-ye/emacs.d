@@ -25,6 +25,8 @@
 ;; Adjust garbage collection threshold for early startup (see use of gcmh below)
 (setq gc-cons-threshold (* 128 1024 1024))
 
+;; Editor toggling behavior;
+(setq truncate-lines nil)
 
 ;; Process performance tuning
 
