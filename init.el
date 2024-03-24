@@ -26,7 +26,7 @@
 (setq gc-cons-threshold (* 128 1024 1024))
 
 ;; Editor toggling behavior;
-(setq truncate-lines nil)
+;; (setq truncate-lines nil)
 
 ;; Process performance tuning
 
