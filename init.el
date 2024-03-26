@@ -192,6 +192,8 @@
 
 (provide 'init)
 
+;; Auto revert mode to refresh buffers when files changed externally
+(global-auto-revert-mode)
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
