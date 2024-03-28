@@ -112,9 +112,9 @@ typical word processor."
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
-      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
-         "* NEXT %?\n%U\n" :clock-resume t)
-        ("n" "note" entry (file "")
+      `(("t" "todo" entry (file "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/gtd.org")  ; "" => `org-default-notes-file'
+         "* TODO %?\n%U\n" :clock-resume t)
+        ("n" "note" entry (file "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/notes/inbox.org")
          "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
         ))
 
@@ -336,25 +336,26 @@ typical word processor."
 
 
 ;; ;; Show iCal calendars in the org agenda
-;; (when (and *is-a-mac* (require 'org-mac-iCal nil t))
-;;   (setq org-agenda-include-diary t
-;;         org-agenda-custom-commands
-;;         '(("I" "Import diary from iCal" agenda ""
-;;            ((org-agenda-mode-hook #'org-mac-iCal)))))
+(when (and *is-a-mac* (require 'org-mac-iCal nil t))
+  (setq org-agenda-include-diary t
+        org-agenda-custom-commands
+        '(("I" "Import diary from iCal" agenda ""
+           ((org-agenda-mode-hook #'org-mac-iCal)))))
 
-;;   (add-hook 'org-agenda-cleanup-fancy-diary-hook
-;;             (lambda ()
-;;               (goto-char (point-min))
-;;               (save-excursion
-;;                 (while (re-search-forward "^[a-z]" nil t)
-;;                   (goto-char (match-beginning 0))
-;;                   (insert "0:00-24:00 ")))
-;;               (while (re-search-forward "^ [a-z]" nil t)
-;;                 (goto-char (match-beginning 0))
-;;                 (save-excursion
-;;                   (re-search-backward "^[0-9]+:[0-9]+-[0-9]+:[0-9]+ " nil t))
-;;                 (insert (match-string 0))))))
+  (add-hook 'org-agenda-cleanup-fancy-diary-hook
+            (lambda ()
+              (goto-char (point-min))
+              (save-excursion
+                (while (re-search-forward "^[a-z]" nil t)
+                  (goto-char (match-beginning 0))
+                  (insert "0:00-24:00 ")))
+              (while (re-search-forward "^ [a-z]" nil t)
+                (goto-char (match-beginning 0))
+                (save-excursion
+                  (re-search-backward "^[0-9]+:[0-9]+-[0-9]+:[0-9]+ " nil t))
+                (insert (match-string 0))))))
 
+;;;
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)
