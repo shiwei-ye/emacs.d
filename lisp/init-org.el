@@ -27,6 +27,7 @@
 
 (maybe-require-package 'org-cliplink)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'org-agenda-files "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/iCal")
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -336,6 +337,10 @@ typical word processor."
 
 
 ;; ;; Show iCal calendars in the org agenda
+;; Calfw
+
+
+;; org-mac-iCal
 (when (and *is-a-mac* (require 'org-mac-iCal nil t))
   (setq org-agenda-include-diary t
         org-agenda-custom-commands
