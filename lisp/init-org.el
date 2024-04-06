@@ -27,7 +27,10 @@
 
 (maybe-require-package 'org-cliplink)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(add-to-list 'org-agenda-files "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/iCal")
+
+(with-eval-after-load 'org-agenda
+  (add-to-list 'org-agenda-files "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/iCal"))
+
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
