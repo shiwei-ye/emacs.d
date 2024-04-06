@@ -109,11 +109,16 @@ typical word processor."
 (setq org-support-shift-select t)
 
 ;;; Capturing
-
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
-      `(("t" "todo" entry (file "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/gtd.org")  ; "" => `org-default-notes-file'
+      `(("i" "todo inbox" entry (file "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/gtd.org")  ; "" => `org-default-notes-file'
+         "* TODO %?\n%U\n" :clock-resume t)
+        ("w" "todo work" entry (file+headline, "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/work.org" "INBOX")  ; Work
+         "* TODO %?\n%U\n" :clock-resume t)
+        ("s" "todo study" entry (file+headline, "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/study.org" "INBOX")  ; Study
+         "* TODO %?\n%U\n" :clock-resume t)
+        ("p" "todo personal" entry (file+headline, "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/agenda/personal.org" "INBOX") ; Personal
          "* TODO %?\n%U\n" :clock-resume t)
         ("n" "note" entry (file "/Users/sye/Dropbox (Erasmus Universiteit Rotterdam)/org/notes/inbox.org")
          "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
